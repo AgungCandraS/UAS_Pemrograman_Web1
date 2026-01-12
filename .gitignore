@@ -1,0 +1,57 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# Environment
+.env
+.env.local
+.env.production
+config/env.local.php
+
+# Storage
+storage/uploads/*
+!storage/uploads/.gitkeep
+storage/exports/*
+!storage/exports/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Cache
+cache/
+*.cache
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+backup_*.sql
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Node modules (if using frontend build tools)
+node_modules/
+
+# Compiled assets
+public/build/
+public/hot
+
+# Testing
+/coverage/
+phpunit.xml
+.phpunit.result.cache

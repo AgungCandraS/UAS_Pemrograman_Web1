@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Set the base path
+    RewriteBase /bisnisku-web-app/
+    
+    # Redirect to public/index.php if not accessing public folder
+    RewriteCond %{REQUEST_URI} !^/?public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+    
+    # Direct access to public folder
+    RewriteCond %{REQUEST_URI} ^/?public/
+    RewriteRule ^public/(.*)$ public/$1 [L]
+</IfModule>
+
+# Set directory index
+DirectoryIndex public/index.php
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
