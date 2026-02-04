@@ -1,23 +1,12 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Redirect all requests to index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php [QSA,L]
-</IfModule>
-
-# Allow access to this directory
-<IfModule mod_authz_core.c>
-    Require all granted
-</IfModule>
-<IfModule !mod_authz_core.c>
-    Order allow,deny
-    Allow from all
-</IfModule>
-
-# Prevent directory listing
 Options -Indexes
 
-# Set default character encoding
-AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Lokasi aplikasi kamu sebenarnya:
+    RewriteBase /bisnisku-web-app/public/
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>

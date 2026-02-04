@@ -1,6 +1,5 @@
 # Dependencies
 /vendor/
-composer.lock
 
 # Environment
 .env
@@ -38,6 +37,14 @@ cache/
 *.backup
 *.sql.gz
 backup_*.sql
+
+# Archive folder (development backups)
+/archive/
+
+# Test files
+test_*.php
+test_*.html
+*_test.php
 
 # Temporary files
 tmp/

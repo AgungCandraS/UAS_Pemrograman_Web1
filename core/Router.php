@@ -67,16 +67,38 @@ class Router {
      * Run the router
      */
     public function run() {
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+
+// normalisasi
+$requestUri = '/' . ltrim($requestUri, '/');
+
+// ambil folder tempat index.php berjalan (ini paling akurat di hosting)
+$scriptDir = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
+// contoh hasil: /bisnisku-web-app/public
+
+// potong base path dari request (biar route jadi /login, /dashboard, dll)
+if ($scriptDir !== '' && $scriptDir !== '/' && strpos($requestUri, $scriptDir) === 0) {
+    $requestUri = substr($requestUri, strlen($scriptDir));
+}
+
+// buang /index.php kalau kebawa (kadang terjadi)
+$requestUri = preg_replace('#^/index\.php#', '', $requestUri);
+
+// final normalisasi
+$requestUri = '/' . ltrim($requestUri, '/');
+$requestUri = rtrim($requestUri, '/') ?: '/';
+
+// Debug logging
+if (defined('APP_DEBUG') && APP_DEBUG) {
+    error_log("Router Debug - Method: {$requestMethod}, URI: {$requestUri}, ScriptDir: {$scriptDir}");
+}
+
         
-        // Remove base path if exists
-        $basePath = str_replace('/public', '', dirname($_SERVER['SCRIPT_NAME']));
-        if ($basePath !== '/' && strpos($requestUri, $basePath) === 0) {
-            $requestUri = substr($requestUri, strlen($basePath));
+        // Debug logging (can be removed after fixing)
+        if (APP_DEBUG) {
+            error_log("Router Debug - Method: {$requestMethod}, URI: {$requestUri}, Script: {$scriptName}");
         }
-        
-        $requestUri = rtrim($requestUri, '/') ?: '/';
         
         foreach ($this->routes as $route) {
             if (preg_match($route['pattern'], $requestUri, $matches) && 
@@ -84,6 +106,11 @@ class Router {
                 
                 // Extract parameters
                 $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
+                
+                // Debug logging
+                if (APP_DEBUG) {
+                    error_log("Router Match Found - Pattern: {$route['pattern']}, Callback: " . (is_string($route['callback']) ? $route['callback'] : 'closure'));
+                }
                 
                 // Call the callback
                 if (is_callable($route['callback'])) {
@@ -93,6 +120,14 @@ class Router {
                 }
                 return;
             }
+        }
+        
+        // Debug: No route matched
+        if (APP_DEBUG) {
+            error_log("Router: No route matched for {$requestMethod} {$requestUri}");
+            error_log("Available routes: " . print_r(array_map(function($r) { 
+                return $r['method'] . ' ' . $r['path']; 
+            }, $this->routes), true));
         }
         
         // 404 Not Found

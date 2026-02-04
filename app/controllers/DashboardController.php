@@ -15,9 +15,9 @@ class DashboardController {
         // Get statistics
         $stats = $this->getStatistics();
         
-        // Get recent orders
+        // Get recent sales (changed from orders)
         $recentOrders = $this->db->fetchAll(
-            "SELECT * FROM orders ORDER BY created_at DESC LIMIT 5"
+            "SELECT * FROM sales ORDER BY created_at DESC LIMIT 5"
         );
         
         // Get low stock products
@@ -43,14 +43,14 @@ class DashboardController {
     }
     
     private function getStatistics() {
-        // Total Revenue (paid orders)
+        // Total Revenue (all sales using final_total)
         $revenue = $this->db->fetchOne(
-            "SELECT COALESCE(SUM(total), 0) as total FROM orders WHERE payment_status = 'paid'"
+            "SELECT COALESCE(SUM(final_total), 0) as total FROM sales"
         );
         
-        // Total Orders
+        // Total Sales count
         $orders = $this->db->fetchOne(
-            "SELECT COUNT(*) as total FROM orders"
+            "SELECT COUNT(*) as total FROM sales"
         );
         
         // Total Products
@@ -65,13 +65,13 @@ class DashboardController {
         
         // Today's Sales
         $todaySales = $this->db->fetchOne(
-            "SELECT COALESCE(SUM(total), 0) as total FROM orders 
-             WHERE DATE(created_at) = CURDATE() AND payment_status = 'paid'"
+            "SELECT COALESCE(SUM(final_total), 0) as total FROM sales 
+             WHERE DATE(created_at) = CURDATE()"
         );
         
-        // Pending Orders
-        $pendingOrders = $this->db->fetchOne(
-            "SELECT COUNT(*) as total FROM orders WHERE order_status = 'pending'"
+        // Total Profit
+        $totalProfit = $this->db->fetchOne(
+            "SELECT COALESCE(SUM(profit), 0) as total FROM sales"
         );
         
         return [
@@ -80,7 +80,7 @@ class DashboardController {
             'products' => $products['total'],
             'employees' => $employees['total'],
             'today_sales' => $todaySales['total'],
-            'pending_orders' => $pendingOrders['total']
+            'profit' => $totalProfit['total']
         ];
     }
     
@@ -88,10 +88,9 @@ class DashboardController {
         return $this->db->fetchAll(
             "SELECT 
                 DATE_FORMAT(created_at, '%Y-%m') as month,
-                COALESCE(SUM(total), 0) as total
-             FROM orders 
-             WHERE payment_status = 'paid'
-             AND created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+                COALESCE(SUM(final_total), 0) as total
+             FROM sales 
+             WHERE created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
              GROUP BY DATE_FORMAT(created_at, '%Y-%m')
              ORDER BY month ASC"
         );

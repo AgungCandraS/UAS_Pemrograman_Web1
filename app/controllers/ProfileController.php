@@ -33,11 +33,18 @@ class ProfileController {
         ];
         
         if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
-            $data['avatar'] = upload_file($_FILES['avatar']);
+            $uploadedFile = upload_file($_FILES['avatar']);
+            if ($uploadedFile) {
+                $data['avatar'] = $uploadedFile;
+            }
         }
         
         if ($this->userModel->update(auth_user()['id'], $data)) {
+            // Update session data
             $_SESSION['user']['full_name'] = $data['full_name'];
+            if (isset($data['avatar'])) {
+                $_SESSION['user']['avatar'] = $data['avatar'];
+            }
             flash('success', 'Profile berhasil diupdate');
         } else {
             flash('error', 'Gagal mengupdate profile');

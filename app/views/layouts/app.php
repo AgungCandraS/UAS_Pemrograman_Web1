@@ -65,9 +65,9 @@
                     <span>HR & Karyawan</span>
                 </a>
                 
-                <a href="<?= base_url('orders') ?>" class="sidebar-item <?= ($activePage ?? '') === 'orders' ? 'active' : '' ?>">
+                <a href="<?= base_url('sales') ?>" class="sidebar-item <?= ($activePage ?? '') === 'sales' ? 'active' : '' ?>">
                     <i class="fas fa-shopping-cart"></i>
-                    <span>Pesanan</span>
+                    <span>Penjualan</span>
                 </a>
                 
                 <a href="<?= base_url('ai-assistant') ?>" class="sidebar-item <?= ($activePage ?? '') === 'ai' ? 'active' : '' ?>">

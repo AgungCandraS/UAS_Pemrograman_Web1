@@ -1,95 +1,86 @@
 <div class="fade-in">
     <!-- Header -->
-    <div class="row g-4 mb-4">
-        <div class="col-12">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
-                <div>
-                    <h2 class="fw-bold mb-1" style="color: var(--text-primary); font-family: 'Poppins', sans-serif;">Keuangan</h2>
-                    <p class="mb-0" style="color: var(--text-tertiary); font-size: 0.9rem;">Kelola pemasukan dan pengeluaran bisnis Anda</p>
-                </div>
-                <a href="<?= base_url('finance/create') ?>" class="btn-custom btn-primary-custom">
-                    <i class="fas fa-plus me-2"></i>Tambah Transaksi
-                </a>
+    <div class="mb-5">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
+            <div>
+                <h1 class="fw-800 mb-2" style="color: var(--text-primary); font-family: 'Poppins', sans-serif; font-size: 2.2rem;">💰 Keuangan</h1>
+                <p class="mb-0" style="color: var(--text-secondary); font-size: 1rem;">Ringkas, pantau, dan kelola arus kas bisnis Anda</p>
             </div>
+            <a href="<?= base_url('finance/create') ?>" class="inv-btn inv-btn-primary" style="padding: 0.875rem 1.5rem; font-weight: 600; text-decoration: none;">
+                <i class="fas fa-plus me-2"></i>Tambah Transaksi
+            </a>
         </div>
     </div>
     
     <!-- Financial Summary Cards -->
-    <div class="row g-4 mb-4">
-        <div class="col-12 col-md-4">
-            <div class="stat-card hover-lift">
-                <div class="stat-card-icon success mb-3">
-                    <i class="fas fa-arrow-up"></i>
-                </div>
-                <p class="stat-card-title">Total Pemasukan</p>
-                <h2 class="stat-card-value text-success"><?= format_currency($summary['income'] ?? 0) ?></h2>
-            </div>
+    <div class="finance-stats-grid" style="margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+            <i class="fas fa-arrow-up" style="font-size: 1.5rem; color: var(--success); margin-bottom: 0.5rem; display: block;"></i>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 500;">Total Pemasukan</p>
+            <p style="color: var(--text-primary); font-size: 1.8rem; font-weight: 700; margin: 0;">
+                <?= format_currency($summary['income'] ?? 0) ?>
+            </p>
         </div>
         
-        <div class="col-12 col-md-4">
-            <div class="stat-card hover-lift">
-                <div class="stat-card-icon warning mb-3">
-                    <i class="fas fa-arrow-down"></i>
-                </div>
-                <p class="stat-card-title">Total Pengeluaran</p>
-                <h2 class="stat-card-value text-danger"><?= format_currency($summary['expense'] ?? 0) ?></h2>
-            </div>
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+            <i class="fas fa-arrow-down" style="font-size: 1.5rem; color: var(--danger); margin-bottom: 0.5rem; display: block;"></i>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 500;">Total Pengeluaran</p>
+            <p style="color: var(--text-primary); font-size: 1.8rem; font-weight: 700; margin: 0;">
+                <?= format_currency($summary['expense'] ?? 0) ?>
+            </p>
         </div>
         
-        <div class="col-12 col-md-4">
-            <div class="stat-card hover-lift">
-                <div class="stat-card-icon info mb-3">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <p class="stat-card-title">Keuntungan Bersih</p>
-                <h2 class="stat-card-value text-primary"><?= format_currency(($summary['income'] ?? 0) - ($summary['expense'] ?? 0)) ?></h2>
-            </div>
+        <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+            <i class="fas fa-chart-line" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; display: block;"></i>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 500;">Total Saldo</p>
+            <p style="color: var(--text-primary); font-size: 1.8rem; font-weight: 700; margin: 0;">
+                <?= format_currency(($summary['income'] ?? 0) - ($summary['expense'] ?? 0)) ?>
+            </p>
         </div>
     </div>
     
     <!-- Filters -->
-    <div class="row g-4 mb-4">
-        <div class="col-12">
-            <div class="table-card">
-                <div class="p-3">
-                    <form method="GET">
-                        <div class="row g-3">
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <select name="type" class="form-control-custom">
-                                    <option value="">Semua Tipe</option>
-                                    <option value="income" <?= get('type') === 'income' ? 'selected' : '' ?>>Pemasukan</option>
-                                    <option value="expense" <?= get('type') === 'expense' ? 'selected' : '' ?>>Pengeluaran</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <input type="date" name="date_from" class="form-control-custom" value="<?= get('date_from', '') ?>" placeholder="Dari Tanggal">
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <input type="date" name="date_to" class="form-control-custom" value="<?= get('date_to', '') ?>" placeholder="Sampai Tanggal">
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <button type="submit" class="btn-custom btn-primary-custom w-100">
-                                    <i class="fas fa-filter me-2"></i>Filter
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <div class="mb-4">
+        <div style="background: var(--surface-1); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">
+            <form method="GET" class="finance-filter-form">
+                <div class="finance-filter-grid">
+                    <div>
+                        <label class="form-label-modern">Tipe Transaksi</label>
+                        <select name="type" class="form-control-modern">
+                            <option value="">Semua Tipe</option>
+                            <option value="income" <?= get('type') === 'income' ? 'selected' : '' ?>>Pemasukan</option>
+                            <option value="expense" <?= get('type') === 'expense' ? 'selected' : '' ?>>Pengeluaran</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label-modern">Dari Tanggal</label>
+                        <input type="date" name="date_from" class="form-control-modern" value="<?= get('date_from', '') ?>">
+                    </div>
+                    <div>
+                        <label class="form-label-modern">Sampai Tanggal</label>
+                        <input type="date" name="date_to" class="form-control-modern" value="<?= get('date_to', '') ?>">
+                    </div>
+                    <div style="align-self: end;">
+                        <button type="submit" class="inv-btn inv-btn-primary" style="width: 100%;">
+                            <i class="fas fa-filter me-2"></i>Filter
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     
     <!-- Transactions Table -->
     <div class="row g-4">
         <div class="col-12">
-            <div class="table-card">
-                <div class="table-card-header">
-                    <h5>Riwayat Transaksi</h5>
+            <div style="background: var(--surface-1); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">
+                <div style="background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 100%); padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+                    <h5 style="color: var(--text-primary); font-weight: 600; margin: 0; font-size: 1rem;">Riwayat Transaksi</h5>
                     <div class="dropdown">
-                        <button class="btn-custom btn-success-custom dropdown-toggle" type="button" id="dropdownExportFinance" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="inv-btn inv-btn-success dropdown-toggle" type="button" id="dropdownExportFinance" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-file-export me-2"></i>Export
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownExportFinance">
+                        <ul class="dropdown-menu dropdown-menu-modern" aria-labelledby="dropdownExportFinance">
                             <li><a class="dropdown-item" href="<?= base_url('finance/export?format=excel&type=' . get('type', '') . '&date_from=' . get('date_from', '') . '&date_to=' . get('date_to', '')) ?>">
                                 <i class="fas fa-file-excel text-success me-2"></i>Export Excel
                             </a></li>
@@ -150,11 +141,11 @@
                                             <?= $transaction['type'] === 'income' ? '+' : '-' ?><?= format_currency($transaction['amount']) ?>
                                         </td>
                                         <td data-label="Aksi">
-                                            <div class="d-flex gap-2">
-                                                <a href="<?= base_url('finance/edit/' . $transaction['id']) ?>" class="btn btn-sm btn-outline-custom" style="padding: 0.375rem 0.75rem; border: 1px solid var(--primary); color: var(--primary);" title="Edit">
+                                            <div style="display: flex; justify-content: center; gap: 0.5rem;">
+                                                <a href="<?= base_url('finance/edit/' . $transaction['id']) ?>" class="action-btn action-btn-edit" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button onclick="confirmAction('Yakin hapus transaksi ini?', '<?= base_url('finance/delete/' . $transaction['id']) ?>')" class="btn btn-sm btn-outline-custom" style="padding: 0.375rem 0.75rem; border: 1px solid var(--danger); color: var(--danger);" title="Hapus">
+                                                <button onclick="confirmAction('Yakin hapus transaksi ini?', '<?= base_url('finance/delete/' . $transaction['id']) ?>')" class="action-btn action-btn-delete" title="Hapus">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -196,70 +187,166 @@ setTimeout(function() {
 ?>
 
 <style>
-.form-control-custom {
+/* Finance stats grid */
+.finance-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* Filter layout */
+.finance-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.form-label-modern {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-control-modern {
     width: 100%;
-    padding: 0.625rem 0.875rem;
-    font-size: 0.9375rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
     border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    background: var(--surface-1);
+    border-radius: 8px;
+    background: var(--surface-2);
     color: var(--text-primary);
     transition: all 0.3s ease;
 }
 
-.form-control-custom:focus {
+.form-control-modern:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
-.form-control-custom::placeholder {
+.form-control-modern::placeholder {
     color: var(--text-muted);
 }
 
-.form-label {
-    margin-bottom: 0.5rem;
+/* Buttons */
+.inv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+}
+
+.inv-btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.inv-btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.inv-btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.inv-btn-success:hover {
+    background: var(--success-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Dropdown Menu Modern */
+.dropdown-menu-modern {
+    background: var(--surface-1) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    padding: 0.5rem 0 !important;
+    min-width: 160px;
+}
+
+.dropdown-menu-modern .dropdown-item {
+    color: var(--text-secondary) !important;
+    transition: all 0.2s ease !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+}
+
+.dropdown-menu-modern .dropdown-item:hover {
+    background: var(--surface-2) !important;
+    color: var(--text-primary) !important;
+    padding-left: 1.25rem;
+}
+
+/* Action buttons */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
     font-size: 0.9rem;
 }
 
-.btn-outline-custom {
-    background: transparent;
-    transition: all 0.3s ease;
+.action-btn-edit {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary);
 }
 
-.btn-outline-custom:hover {
-    background: var(--surface-3);
-    transform: translateY(-2px);
+.action-btn-edit:hover {
+    background: rgba(99, 102, 241, 0.25);
+    transform: scale(1.08);
 }
 
-.input-group-text {
-    font-weight: 600;
+.action-btn-delete {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+}
+
+.action-btn-delete:hover {
+    background: rgba(239, 68, 68, 0.25);
+    transform: scale(1.08);
+}
+
+@media (max-width: 1024px) {
+    .finance-filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
-    .custom-table thead {
-        display: none;
+    .finance-stats-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
-    
-    .custom-table tbody tr {
-        display: block;
-        margin-bottom: 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: 0.5rem;
-        padding: 1rem;
+
+    .finance-filter-grid {
+        grid-template-columns: 1fr;
     }
-    
-    .custom-table tbody td {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 0;
-        border: none;
-    }
-    
-    .custom-table tbody td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        color: var(--text-secondary);
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
     }
 }
 </style>

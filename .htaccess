@@ -1,25 +1,17 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Set the base path
-    RewriteBase /bisnisku-web-app/
-    
-    # Redirect to public/index.php if not accessing public folder
-    RewriteCond %{REQUEST_URI} !^/?public/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ public/index.php [QSA,L]
-    
-    # Direct access to public folder
-    RewriteCond %{REQUEST_URI} ^/?public/
-    RewriteRule ^public/(.*)$ public/$1 [L]
-</IfModule>
-
-# Set directory index
-DirectoryIndex public/index.php
-
-# Prevent directory listing
 Options -Indexes
 
-# Set default charset
-AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force HTTPS (optional, boleh tetap pakai)
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Jika akses root domain, arahkan ke app
+    RewriteRule ^$ bisnisku-web-app/public/ [L,R=302]
+
+    # Semua request lain (kecuali file/folder nyata) arahkan ke app juga
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ bisnisku-web-app/public/$1 [L]
+</IfModule>

@@ -72,15 +72,22 @@ class User {
     /**
      * Update remember token
      */
-    public function updateRememberToken($userId, $token) {
-        return $this->db->update('users', ['remember_token' => $token], 'id = ?', [$userId]);
+    public function updateRememberToken($userId, $token, $expiresAt = null) {
+        $data = [
+            'remember_token' => $token,
+            'remember_token_expires' => $expiresAt
+        ];
+        return $this->db->update('users', $data, 'id = ?', [$userId]);
     }
     
     /**
      * Find user by remember token
      */
     public function findByRememberToken($token) {
-        $sql = "SELECT * FROM users WHERE remember_token = ? AND status = 'active'";
+        $sql = "SELECT * FROM users 
+                WHERE remember_token = ? 
+                AND status = 'active'
+                AND (remember_token_expires IS NULL OR remember_token_expires > NOW())";
         return $this->db->fetchOne($sql, [$token]);
     }
 }

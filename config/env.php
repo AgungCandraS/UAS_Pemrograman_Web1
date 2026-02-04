@@ -1,20 +1,51 @@
 <?php
 /**
- * Environment Configuration
- * Copy this file to .env.php and update with your settings
+ * Environment Configuration (Smart Switch)
+ * 
+ * DEV  : localhost (XAMPP)
+ * PROD : Rumahweb (acas.my.id)
+ * 
+ * CARA PAKAI:
+ * 1. Saat upload ke hosting: set $isProd = true;
+ * 2. Saat lokal development: set $isProd = false;
  */
 
-// Application
+// ==================== BASE ====================
 define('APP_NAME', 'Bisnisku');
-define('APP_ENV', 'development'); // development, production
-define('APP_DEBUG', true);
-define('APP_URL', 'http://localhost/bisnisku-web-app');
 
-// Database
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'bisnisku_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Set timezone
+date_default_timezone_set('Asia/Jakarta');
+
+// ==================== ENV SWITCH ====================
+// ⚠️ UBAH INI SAAT UPLOAD KE HOSTING
+$isProd = true; // false = localhost, true = hosting Rumahweb
+
+if ($isProd) {
+    // ==================== PRODUCTION SETTINGS ====================
+    define('APP_ENV', 'production');
+    define('APP_DEBUG', false);
+    define('APP_URL', 'https://acas.my.id');
+
+    // Database Production (Rumahweb)
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'acax9288_bisnisku');
+    define('DB_USER', 'acax9288_users');
+    define('DB_PASS', 'Acas080106#'); // ⚠️ GANTI dengan password database dari cPanel
+    
+} else {
+    // ==================== DEVELOPMENT SETTINGS ====================
+    define('APP_ENV', 'development');
+    define('APP_DEBUG', true);
+    define('APP_URL', 'http://localhost/bisnisku-web-app');
+
+    // Database Local (XAMPP)
+    define('DB_HOST', '127.0.0.1');
+    define('DB_NAME', 'bisnisku_db');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+}
+
+// ==================== COMMON SETTINGS ====================
 define('DB_CHARSET', 'utf8mb4');
 
 // Session

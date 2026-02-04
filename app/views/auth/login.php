@@ -14,6 +14,7 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
@@ -23,8 +24,11 @@
         <div class="auth-card scale-in">
             <!-- Logo -->
             <div class="auth-logo">
-                <h1><i class="fas fa-store"></i> Bisnisku</h1>
-                <p>Kelola bisnis Anda dengan mudah dan profesional</p>
+                <div class="logo-icon mb-3">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h1 class="mb-2">Bisnisku</h1>
+                <p style="color: var(--text-secondary);">Kelola bisnis Anda dengan mudah dan profesional</p>
             </div>
             
             <!-- Flash Messages -->
@@ -84,36 +88,39 @@
                     </div>
                 </div>
                 
-                <!-- Remember Me & Forgot Password -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="1" id="remember">
-                        <label class="form-check-label" for="remember">
-                            Ingat saya
+                <!-- Remember Me -->
+                <div class="mb-4">
+                    <div class="custom-checkbox-wrapper">
+                        <input 
+                            class="custom-checkbox-input" 
+                            type="checkbox" 
+                            name="remember" 
+                            value="1" 
+                            id="remember"
+                        >
+                        <label class="custom-checkbox-label" for="remember">
+                            <span class="checkbox-box">
+                                <i class="fas fa-check checkbox-icon"></i>
+                            </span>
+                            <span class="checkbox-text">Ingat saya selama 30 hari</span>
                         </label>
                     </div>
-                    <a href="#" class="text-primary text-decoration-none">Lupa password?</a>
                 </div>
                 
                 <!-- Submit Button -->
-                <button type="submit" class="btn-custom btn-primary-custom w-100 mb-3">
-                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                <button type="submit" class="btn-custom btn-primary-custom w-100 mb-4">
+                    <i class="fas fa-sign-in-alt me-2"></i>Masuk ke Dashboard
                 </button>
+            </form>
                 
-                <!-- Register Link -->
-                <p class="text-center mb-0">
+            <!-- Register Link -->
+            <div class="text-center mt-4">
+                <p class="mb-0" style="color: var(--text-secondary);">
                     Belum punya akun? 
                     <a href="<?= base_url('register') ?>" class="text-primary text-decoration-none fw-semibold">
-                        Daftar sekarang
+                        Daftar sekarang <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </p>
-            </form>
-            
-            <!-- Demo Credentials -->
-            <div class="mt-4 p-3 bg-light rounded">
-                <p class="mb-2 fw-semibold"><i class="fas fa-info-circle text-primary me-2"></i>Demo Login:</p>
-                <p class="mb-1 small">Email: <strong>admin@bisnisku.com</strong></p>
-                <p class="mb-0 small">Password: <strong>admin123</strong></p>
             </div>
         </div>
     </div>
@@ -141,6 +148,34 @@
             passwordIcon.classList.add('fa-eye');
         }
     }
+    
+    // Visual feedback for remember checkbox
+    document.addEventListener('DOMContentLoaded', function() {
+        const rememberCheckbox = document.getElementById('remember');
+        const checkboxWrapper = document.querySelector('.custom-checkbox-wrapper');
+        
+        if (rememberCheckbox && checkboxWrapper) {
+            // Add click animation
+            checkboxWrapper.addEventListener('click', function() {
+                const box = this.querySelector('.checkbox-box');
+                box.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    box.style.transform = 'scale(1)';
+                }, 100);
+            });
+            
+            // Load saved state
+            const savedRemember = localStorage.getItem('remember_preference');
+            if (savedRemember === 'true') {
+                rememberCheckbox.checked = true;
+            }
+            
+            // Save preference
+            rememberCheckbox.addEventListener('change', function() {
+                localStorage.setItem('remember_preference', this.checked);
+            });
+        }
+    });
 </script>
 
 <?php

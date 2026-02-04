@@ -4,17 +4,24 @@
  * Entry Point - Front Controller
  */
 
-// Start session
-session_start();
+// Auto-detect BASE_PATH based on script location
+if (!defined('BASE_PATH')) {
+    // Get the directory where this file is located relative to document root
+    $scriptPath = dirname($_SERVER['SCRIPT_NAME']);
+    define('BASE_PATH', $scriptPath);
+}
 
-// Define constants
+// Define paths
 define('ROOT_PATH', dirname(__DIR__));
 define('APP_PATH', ROOT_PATH . '/app');
 define('CONFIG_PATH', ROOT_PATH . '/config');
 define('CORE_PATH', ROOT_PATH . '/core');
 define('PUBLIC_PATH', ROOT_PATH . '/public');
 define('STORAGE_PATH', ROOT_PATH . '/storage');
-define('ASSETS_PATH', '/assets');
+
+// URL assets harus ikut BASE_PATH, dan assets HARUS ada di folder public/assets
+define('ASSETS_PATH', BASE_PATH . '/assets');
+
 
 // Load environment variables
 require_once CONFIG_PATH . '/env.php';
@@ -39,13 +46,33 @@ spl_autoload_register(function ($class) {
 // Load helpers
 require_once CORE_PATH . '/helpers.php';
 
-// Check remember me cookie
+// Configure session settings
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.gc_maxlifetime', 7200); // 2 hours
+ini_set('session.cookie_lifetime', 0); // Browser session by default
+
+// Set up database session handler
+$sessionHandler = new DatabaseSessionHandler();
+session_set_save_handler($sessionHandler, true);
+
+// Start session
+session_start();
+
+// Check remember me cookie and auto-login if valid
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_token'])) {
     $userModel = new User();
-    $user = $userModel->findByRememberToken($_COOKIE['remember_token']);
+    $token = $_COOKIE['remember_token'];
+    $hashedToken = hash('sha256', $token);
     
-    if ($user) {
+    // Find user by hashed token (includes expiration check)
+    $user = $userModel->findByRememberToken($hashedToken);
+    
+    if ($user && $user['status'] === 'active') {
         // Auto login from cookie
+        session_regenerate_id(true);
+        
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user'] = [
             'id' => $user['id'],
@@ -54,6 +81,17 @@ if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_token'])) {
             'role' => $user['role'],
             'avatar' => $user['avatar']
         ];
+        $_SESSION['login_time'] = time();
+        $_SESSION['last_activity'] = time();
+        $_SESSION['auto_login'] = true;
+        
+        // Log the auto-login
+        $sessionModel = new Session();
+        $sessionModel->logLogin($user['id'], 'success');
+    } else {
+        // Invalid or expired token, clear cookie
+        setcookie('remember_token', '', time() - 3600, '/', '', false, true);
+        unset($_COOKIE['remember_token']);
     }
 }
 
