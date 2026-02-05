@@ -117,11 +117,11 @@ http://localhost/bisnisku-web-app/public/
   👉 [https://acas.my.id](https://acas.my.id)
 
 * 🎥 **Video Demo Aplikasi**
-  👉 [
+  👉 
 
   https://github.com/user-attachments/assets/67d2c738-a5a3-47e4-855d-c2c89a50e60b
 
-)
+
 
 ---
 
@@ -133,18 +133,18 @@ http://localhost/bisnisku-web-app/public/
 
 Halaman autentikasi untuk user dan admin menggunakan email dan password.
 
-![Login](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/edf2248b-ef3f-45e5-8f91-571c84a5640e" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/edf2248b-ef3f-45e5-8f91-571c84a5640e" />
 
-)
+
 
 ---
 
 ### 2 Halaman Register
 
 Halaman register untuk Pendaftaran
-![Login](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4cd4c8da-60c9-4499-8f6a-786a57ac1722" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4cd4c8da-60c9-4499-8f6a-786a57ac1722" />
 
-)
+
 ---
 
 
@@ -152,9 +152,9 @@ Halaman register untuk Pendaftaran
 
 Dashboard utama admin yang menampilkan ringkasan data sistem.
 
-![Dashboard Admin](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1acd8360-683c-4de0-9ab2-accc93b4ce50" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1acd8360-683c-4de0-9ab2-accc93b4ce50" />
 
-)
+
 
 ---
 
@@ -162,9 +162,9 @@ Dashboard utama admin yang menampilkan ringkasan data sistem.
 
 Daftar produk yang tersimpan di database lengkap dengan harga dan stok.
 
-![Inventori](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c8a8278f-71d1-40f7-bec0-0ac87a9fed61" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c8a8278f-71d1-40f7-bec0-0ac87a9fed61" />
 
-)
+
 
 ---
 
@@ -172,9 +172,9 @@ Daftar produk yang tersimpan di database lengkap dengan harga dan stok.
 
 Form input untuk menambahkan produk baru ke sistem.
 
-![Tambah Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5408e258-827c-473b-a4ac-704de5437114" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5408e258-827c-473b-a4ac-704de5437114" />
 
-)
+
 
 ---
 
@@ -182,9 +182,9 @@ Form input untuk menambahkan produk baru ke sistem.
 
 Admin dapat mengubah data produk yang sudah tersimpan.
 
-![Edit Produk](s<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7cc4279e-17ea-4282-a8ae-91ac1b791de5" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7cc4279e-17ea-4282-a8ae-91ac1b791de5" />
 
-)
+
 
 ---
 
@@ -192,9 +192,9 @@ Admin dapat mengubah data produk yang sudah tersimpan.
 
 Produk dapat dihapus dan langsung terhapus dari database.
 
-![Hapus Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/87c54699-edd5-4459-b2bc-5a60263e3381" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/87c54699-edd5-4459-b2bc-5a60263e3381" />
 
-)
+
 
 ---
 
@@ -202,9 +202,9 @@ Produk dapat dihapus dan langsung terhapus dari database.
 
 Menampilkan daftar uang masukdankeluar
 
-![Transaksi](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f1f15244-0f4a-4661-bda5-0f01c628189d" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f1f15244-0f4a-4661-bda5-0f01c628189d" />
 
-)
+
 
 ---
 
@@ -212,77 +212,77 @@ Menampilkan daftar uang masukdankeluar
 
 Tambah Transaksi Keuangan
 
-![Transaksi](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/67168818-dc19-498b-a306-735644183e89" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/67168818-dc19-498b-a306-735644183e89" />
 
-)
+
 
 ---
 ### 10 HR Karyawan
 
 fitur karyawan bisa tambah karyawan, absensi karyawan, pencatatan produksi karyawan sampai penggajian
 
-![HR Karyawan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e3d694a4-3885-4185-827e-cc0a24510282" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e3d694a4-3885-4185-827e-cc0a24510282" />
 
-)
+
 
 ---
 ### 11 Penjualan
 
 Fitur Penjualan, untuk mencatat penjualan online maupun offline beserta potongan admin fees platorm jika online yang dapat diatur disetting penjualan
 
-![Penjualan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5ecf3cfa-6720-4fd4-a2f7-23b90a8f4844" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5ecf3cfa-6720-4fd4-a2f7-23b90a8f4844" />
 
-)
+
 
 ---
 ### 12 AI Asistant
 
 Fitur chatbot sederhana untuk membantu admin dalam pengecekan cepat
 
-![AI Asistant](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
 
-)
+
 
 ---
 ### 13 Profil
 
 Fitur Profil untuk mengatur profil dan ganti pasword serta cek informasi akun
 
-![Profil](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
 
-)
+
 
 ---
 ### 14 Pengaturan
 
 Fitur Pengaturan akun
 
-![Pengaturan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2471202f-08ad-40dd-b888-4903384ca043" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2471202f-08ad-40dd-b888-4903384ca043" />
 
 
-)
+
 
 ---
 ### 15 Export PDF
 
 tampilan export pdf
 
-![Export PDF](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/dadf517d-8565-4f7d-a13c-22c59d08264a" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/dadf517d-8565-4f7d-a13c-22c59d08264a" />
 
 
 
-)
+
 
 ---
 ### 16 Export Excel
 
 tampilan export Excel
 
-![Export Excel](<img width="1029" height="535" alt="image" src="https://github.com/user-attachments/assets/87de83d9-b463-4b9c-afc6-792c725ec6a3" />
+<img width="1029" height="535" alt="image" src="https://github.com/user-attachments/assets/87de83d9-b463-4b9c-afc6-792c725ec6a3" />
 
 
 
-)
+
 
 ---
 ## 📁 Struktur Project
