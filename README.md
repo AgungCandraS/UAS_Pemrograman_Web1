@@ -134,6 +134,7 @@ http://localhost/bisnisku-web-app/public/
 Halaman autentikasi untuk user dan admin menggunakan email dan password.
 
 ![Login](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/edf2248b-ef3f-45e5-8f91-571c84a5640e" />
+
 )
 
 ---
@@ -152,6 +153,7 @@ Halaman register untuk Pendaftaran
 Dashboard utama admin yang menampilkan ringkasan data sistem.
 
 ![Dashboard Admin](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1acd8360-683c-4de0-9ab2-accc93b4ce50" />
+
 )
 
 ---
@@ -161,6 +163,7 @@ Dashboard utama admin yang menampilkan ringkasan data sistem.
 Daftar produk yang tersimpan di database lengkap dengan harga dan stok.
 
 ![Inventori](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c8a8278f-71d1-40f7-bec0-0ac87a9fed61" />
+
 )
 
 ---
@@ -170,6 +173,7 @@ Daftar produk yang tersimpan di database lengkap dengan harga dan stok.
 Form input untuk menambahkan produk baru ke sistem.
 
 ![Tambah Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5408e258-827c-473b-a4ac-704de5437114" />
+
 )
 
 ---
@@ -179,6 +183,7 @@ Form input untuk menambahkan produk baru ke sistem.
 Admin dapat mengubah data produk yang sudah tersimpan.
 
 ![Edit Produk](s<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7cc4279e-17ea-4282-a8ae-91ac1b791de5" />
+
 )
 
 ---
@@ -188,6 +193,7 @@ Admin dapat mengubah data produk yang sudah tersimpan.
 Produk dapat dihapus dan langsung terhapus dari database.
 
 ![Hapus Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/87c54699-edd5-4459-b2bc-5a60263e3381" />
+
 )
 
 ---
@@ -197,6 +203,7 @@ Produk dapat dihapus dan langsung terhapus dari database.
 Menampilkan daftar uang masukdankeluar
 
 ![Transaksi](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f1f15244-0f4a-4661-bda5-0f01c628189d" />
+
 )
 
 ---
@@ -210,11 +217,12 @@ Tambah Transaksi Keuangan
 )
 
 ---
-### 10 Export Laporan
+### 10 HR Karyawan
 
 fitur karyawan bisa tambah karyawan, absensi karyawan, pencatatan produksi karyawan sampai penggajian
 
 ![HR Karyawan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e3d694a4-3885-4185-827e-cc0a24510282" />
+
 )
 
 ---
