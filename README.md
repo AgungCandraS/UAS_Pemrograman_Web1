@@ -1,289 +1,315 @@
 
-# 🏪 Bisnisku Web Application
 
-# Link Hosting website: 
-# acas.my.id
-
-Modern Business Management System berbasis PHP Native dengan MySQL Database.
-
-## 📋 Daftar Isi
-- [Fitur Utama](#fitur-utama)
-- [Teknologi](#teknologi)
-- [Persyaratan Sistem](#persyaratan-sistem)
-- [Instalasi](#instalasi)
-- [Konfigurasi](#konfigurasi)
-- [Struktur Project](#struktur-project)
-- [Modul & Fitur](#modul--fitur)
-- [Screenshot](#screenshot)
-- [API Documentation](#api-documentation)
-- [Troubleshooting](#troubleshooting)
+````md
+# 🏪 Bisnisku Web Application  
+Modern Business Management System berbasis **PHP Native** dengan **MySQL Database**  
+untuk membantu UMKM mengelola **inventori, penjualan, keuangan, dan pengguna** secara terintegrasi.
 
 ---
 
-## ✨ Fitur Utama
+## 📋 Fitur Utama
 
-### 1. **Dashboard Analytics**
-- Real-time statistics & metrics
-- Interactive charts (Chart.js & ApexCharts)
-- Monthly sales trends
-- Low stock alerts
-
-### 2. **Inventory Management**
-- Product CRUD operations
-- Category management
-- Stock tracking & movements
-- Low stock notifications
-- SKU generator
-- Export to PDF/Excel
-
-### 3. **Finance Module**
-- Income & expense tracking
-- Profit/Loss reports
-- Transaction management
-- Monthly financial reports
-- Visual charts & analytics
-- Export financial reports
-
-### 4. **HR Management**
-- Employee management
-- Attendance tracking
-- Payroll system
-- Department management
-- Employee performance
-
-### 5. **Orders Management**
-- Order creation & tracking
-- Customer management
-- Order status workflow
-- Invoice generation
-- Payment tracking
-
-### 6. **Export Reports** 📊
-- PDF reports (TCPDF)
-- Excel exports (PhpSpreadsheet)
-- Custom date ranges
-- Multiple format support
-- **Inventory Export** - Excel & PDF dengan search filter
-- **Finance Export** - Excel & PDF dengan date range & type filter
-- **Orders Export** - Excel & PDF dengan status filter
-- **HR Export** - Excel & PDF untuk data karyawan
-
-### 7. **Footer Copyright**
-- Footer sesuai ketentuan UAS: `@Copyright by NPM_NAMA_KELAS_UASWEB1`
-- Muncul di semua halaman (Dashboard & Guest pages)
+- 🔐 **Autentikasi User**
+  - Login & Logout berbasis session
+  - Hak akses Admin & User
+- 📊 **Dashboard Admin**
+  - Ringkasan data produk & transaksi
+- 📦 **Inventory Management**
+  - CRUD Produk
+  - Stok & harga tersimpan di database
+- 🧾 **Orders / Transaksi**
+  - Pencatatan transaksi penjualan
+  - Riwayat transaksi
+- 📤 **Export Laporan**
+  - PDF
+  - Excel (CSV)
+- 🧪 **Session & Cookie Testing**
+  - Cocok untuk shared hosting
+- 🧾 **Footer sesuai ketentuan UAS**
 
 ---
 
 ## 🛠 Teknologi
 
-- **Backend**: PHP 8.0+ (Native)
-- **Database**: MySQL 8.0+
-- **Frontend**: Tailwind CSS 3.x
-- **Charts**: Chart.js, ApexCharts
-- **Icons**: Font Awesome 6
-- **Architecture**: MVC Pattern
+- **Backend** : PHP Native (≥ 7.4)
+- **Database** : MySQL / MariaDB
+- **Frontend** : Bootstrap 5 + Custom CSS
+- **Export** : PDF & CSV
+- **Arsitektur** : MVC Sederhana
 
 ---
 
 ## 📋 Persyaratan Sistem
 
-- PHP >= 8.0
-- MySQL >= 8.0
-- Apache/Nginx Web Server
-- Composer (optional, for libraries)
-- Git
-
-**PHP Extensions Required:**
-- PDO
-- pdo_mysql
-- mbstring
-- json
-- fileinfo
+- PHP ≥ 7.4
+- MySQL / MariaDB
+- Apache / Nginx
+- mod_rewrite aktif
+- XAMPP / LAMP / Shared Hosting
 
 ---
 
+## 🚀 Instalasi
+
+### 1️⃣ Clone / Extract Project
+```bash
+# Extract ke
+htdocs/bisnisku-web-app
+````
+
+### 2️⃣ Setup Database
+
+Buat database:
+
+```sql
+CREATE DATABASE bisnisku;
+```
+
+Import database:
+
+```bash
+mysql -u root -p bisnisku < storage/sql/database.sql
+```
+
+---
+
+### 3️⃣ Konfigurasi Database
+
+Edit file:
+
+```
+config/env.php
+```
+
+Sesuaikan:
+
+```php
+DB_HOST=localhost
+DB_NAME=bisnisku
+DB_USER=root
+DB_PASS=your_password
+```
+
+---
+
+### 4️⃣ Jalankan Aplikasi
+
+Akses melalui browser:
+
+```
+http://localhost/bisnisku-web-app/public/
+```
+
+---
+
+## 🔑 Login Default
+
+**Admin**
+
+* Email : `admin@bisnisku.com`
+* Password : `admin123`
+
+---
+
+## 🌐 Demo & Akses Online
+
+* 🔗 **Hosting / Production**
+  👉 [https://acas.my.id](https://acas.my.id)
+
+* 🎥 **Video Demo Aplikasi**
+  👉 [https://github.com/user-attachments/assets/67d2c738-a5a3-47e4-855d-c2c89a50e60b
+)
+
+---
+
+## 🖼️ Screenshot Aplikasi
+
+---
+
+### 1 Halaman Login
+
+Halaman autentikasi untuk user dan admin menggunakan email dan password.
+
+![Login](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/edf2248b-ef3f-45e5-8f91-571c84a5640e" />
+)
+
+---
+
+### 2 Halaman Register
+
+Halaman register untuk Pendaftaran
+![Login](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4cd4c8da-60c9-4499-8f6a-786a57ac1722" />
+
+)
+---
+
+
+### 3 Dashboard Admin
+
+Dashboard utama admin yang menampilkan ringkasan data sistem.
+
+![Dashboard Admin](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1acd8360-683c-4de0-9ab2-accc93b4ce50" />
+)
+
+---
+
+### 4 Data Produk / Inventori
+
+Daftar produk yang tersimpan di database lengkap dengan harga dan stok.
+
+![Inventori](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c8a8278f-71d1-40f7-bec0-0ac87a9fed61" />
+)
+
+---
+
+### 5 Tambah Produk
+
+Form input untuk menambahkan produk baru ke sistem.
+
+![Tambah Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5408e258-827c-473b-a4ac-704de5437114" />
+)
+
+---
+
+### 6 Edit Produk
+
+Admin dapat mengubah data produk yang sudah tersimpan.
+
+![Edit Produk](s<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7cc4279e-17ea-4282-a8ae-91ac1b791de5" />
+)
+
+---
+
+### 7 Hapus Produk
+
+Produk dapat dihapus dan langsung terhapus dari database.
+
+![Hapus Produk](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/87c54699-edd5-4459-b2bc-5a60263e3381" />
+)
+
+---
+
+### 8 Keuangan
+
+Menampilkan daftar uang masukdankeluar
+
+![Transaksi](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f1f15244-0f4a-4661-bda5-0f01c628189d" />
+)
+
+---
+
+### 9 Tambah transaksi Keuangan
+
+Tambah Transaksi Keuangan
+
+![Transaksi](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/67168818-dc19-498b-a306-735644183e89" />
+
+)
+
+---
+### 10 Export Laporan
+
+fitur karyawan bisa tambah karyawan, absensi karyawan, pencatatan produksi karyawan sampai penggajian
+
+![HR Karyawan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e3d694a4-3885-4185-827e-cc0a24510282" />
+)
+
+---
+### 11 Penjualan
+
+Fitur Penjualan, untuk mencatat penjualan online maupun offline beserta potongan admin fees platorm jika online yang dapat diatur disetting penjualan
+
+![Penjualan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5ecf3cfa-6720-4fd4-a2f7-23b90a8f4844" />
+
+)
+
+---
+### 12 AI Asistant
+
+Fitur chatbot sederhana untuk membantu admin dalam pengecekan cepat
+
+![AI Asistant](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
+
+)
+
+---
+### 13 Profil
+
+Fitur Profil untuk mengatur profil dan ganti pasword serta cek informasi akun
+
+![Profil](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0cbef3f-4c2a-4a49-a2ee-8f4fa185d3c6" />
+
+)
+
+---
+### 14 Pengaturan
+
+Fitur Pengaturan akun
+
+![Pengaturan](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2471202f-08ad-40dd-b888-4903384ca043" />
+
+
+)
+
+---
+### 15 Export PDF
+
+tampilan export pdf
+
+![Export PDF](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/dadf517d-8565-4f7d-a13c-22c59d08264a" />
+
+
+
+)
+
+---
+### 16 Export Excel
+
+tampilan export Excel
+
+![Export Excel](<img width="1029" height="535" alt="image" src="https://github.com/user-attachments/assets/87de83d9-b463-4b9c-afc6-792c725ec6a3" />
+
+
+
+)
+
+---
 ## 📁 Struktur Project
 
-```
+```txt
 bisnisku-web-app/
-├── app/
-│   ├── controllers/         # Controller files
-│   │   ├── AuthController.php
-│   │   ├── DashboardController.php
-│   │   ├── InventoryController.php
-│   │   ├── FinanceController.php
-│   │   ├── HRController.php
-│   │   ├── OrderController.php
-│   │   ├── AIController.php
-│   │   └── ProfileController.php
-│   ├── models/              # Model files
-│   │   ├── User.php
-│   │   ├── Product.php
-│   │   ├── Transaction.php
-│   │   ├── Employee.php
-│   │   └── Order.php
-│   ├── views/               # View files
-│   │   ├── layouts/
-│   │   │   ├── base.php
-│   │   │   └── app.php
-│   │   ├── auth/
-│   │   │   ├── login.php
-│   │   │   └── register.php
-│   │   ├── dashboard/
-│   │   ├── inventory/
-│   │   ├── finance/
-│   │   ├── hr/
-│   │   ├── orders/
-│   │   └── ai/
-│   └── middleware/
-│       └── AuthMiddleware.php
-├── assets/
-│   ├── css/                 # Custom CSS
-│   ├── js/                  # Custom JavaScript
-│   └── images/              # Images
-├── config/
-│   └── env.php              # Environment config
-├── core/
-│   ├── Router.php           # Routing system
-│   ├── Database.php         # Database handler
-│   └── helpers.php          # Helper functions
-├── public/                  # Public directory (Document Root)
-│   ├── index.php            # Entry point
-│   └── .htaccess            # Apache rewrite rules
+├── app/                    # Controller, Model, View
+├── core/                   # Router & Database
+├── config/                 # Konfigurasi environment
+├── public/                 # Entry point aplikasi
+│   ├── index.php
+│   └── .htaccess
+├── assets/                 # CSS, JS, Images
 ├── storage/
-│   ├── uploads/             # User uploads
-│   └── exports/             # Generated reports
-├── database.sql             # Database schema
-├── routes.php               # Route definitions
-├── composer.json            # Composer dependencies
-└── README.md                # Documentation
+│   ├── uploads/
+│   ├── exports/
+│   └── sql/
+├── routes.php
+└── README.md
 ```
 
----
 
-## 🎯 Modul & Fitur
 
-### 1. Authentication Module
+## 📝 Catatan:
 
-**Routes:**
-- `GET /login` - Login page
-- `POST /login` - Login process
-- `GET /register` - Register page
-- `POST /register` - Register process
-- `GET /logout` - Logout
+Aplikasi ini dikembangkan untuk memenuhi **UAS Pemrograman Web**, dengan penerapan:
 
-**Default Login:**
-- Email: `admin@bisnisku.com`
-- Password: `admin123`
-
-### 2. Dashboard Module
-
-**Features:**
-- Total revenue statistics
-- Orders count
-- Products inventory count
-- Employee count
-- Monthly sales chart
-- Recent orders list
-- Low stock alerts
-
-**Routes:**
-- `GET /dashboard` - Main dashboard
-- `GET /dashboard/stats` - Get statistics (AJAX)
-
-### 3. Inventory Module
-
-**Features:**
-- Product list with pagination
-- Add new product
-- Edit product
-- Delete product
-- Category management
-- Stock movement tracking
-- Low stock notifications
-- Export to PDF/Excel
-
-**Routes:**
-- `GET /inventory` - Product list
-- `GET /inventory/create` - Add product form
-- `POST /inventory/store` - Save product
-- `GET /inventory/edit/{id}` - Edit form
-- `POST /inventory/update/{id}` - Update product
-- `POST /inventory/delete/{id}` - Delete product
-- `GET /inventory/export` - Export report
-
-### 4. Finance Module
-
-**Features:**
-- Income tracking
-- Expense tracking
-- Profit/Loss calculation
-- Monthly reports
-- Transaction categories
-- Payment methods
-- Visual charts
-- Export reports
-
-**Routes:**
-- `GET /finance` - Finance dashboard
-- `GET /finance/income` - Income list
-- `GET /finance/expense` - Expense list
-- `POST /finance/transaction/store` - Add transaction
-- `POST /finance/transaction/delete/{id}` - Delete
-- `GET /finance/export` - Export report
-
-### 5. HR Module
-
-**Features:**
-- Employee management
-- Attendance system
-- Payroll calculation
-- Department management
-- Employee documents
-- Performance tracking
-
-**Routes:**
-- `GET /hr` - HR dashboard
-- `GET /hr/employees` - Employee list
-- `GET /hr/employee/create` - Add employee
-- `POST /hr/employee/store` - Save employee
-- `GET /hr/attendance` - Attendance page
-- `POST /hr/attendance/record` - Record attendance
-- `GET /hr/payroll` - Payroll page
-- `GET /hr/export` - Export report
-
-### 6. Orders Module
-
-**Features:**
-- Create new order
-- Order tracking
-- Customer management
-- Order status workflow
-- Payment tracking
-- Invoice generation
-- Order history
-
-**Routes:**
-- `GET /orders` - Order list
-- `GET /orders/create` - Create order
-- `POST /orders/store` - Save order
-- `GET /orders/detail/{id}` - Order detail
-- `POST /orders/update-status/{id}` - Update status
-- `GET /orders/export` - Export report
-
-### 7. AI Assistant Module
-
-**Features:**
-- Business insights chatbot
-- Sales predictions
-- Inventory recommendations
-- Financial analysis
-- Automated reports
-
-**Routes:**
-- `GET /ai-assistant` - AI chat interface
-- `POST /ai-assistant/chat` - Send message
-- `GET /ai-assistant/insights` - Get insights
-- `GET /ai-assistant/recommendations` - Get recommendations
+* CRUD
+* Autentikasi & Session
+* Database Relasional
+* Export Data
+* Struktur project terorganisir
 
 ---
+
+## 📜 License
+
+© 2026
+**Bisnisku Web Application**
+Project UAS Pemrograman Web
+
