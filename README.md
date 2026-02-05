@@ -68,7 +68,7 @@ CREATE DATABASE bisnisku;
 Import database:
 
 ```bash
-mysql -u root -p bisnisku < storage/sql/database.sql
+mysql -u root -p bisnisku < storage/sql/acax9288_bisnisku (1).sql
 ```
 
 ---
@@ -117,7 +117,10 @@ http://localhost/bisnisku-web-app/public/
   👉 [https://acas.my.id](https://acas.my.id)
 
 * 🎥 **Video Demo Aplikasi**
-  👉 [https://github.com/user-attachments/assets/67d2c738-a5a3-47e4-855d-c2c89a50e60b
+  👉 [
+
+  https://github.com/user-attachments/assets/67d2c738-a5a3-47e4-855d-c2c89a50e60b
+
 )
 
 ---
